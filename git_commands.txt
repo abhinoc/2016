@@ -1,0 +1,22 @@
+srvdsks-MacBook-Pro:2016 abhisheka$ git branch -av
+* master                 2892214 test
+  remotes/origin/HEAD    -> origin/master
+  remotes/origin/develop c84fa71 test
+  remotes/origin/master  2892214 test
+srvdsks-MacBook-Pro:2016 abhisheka$ git branch laptop
+srvdsks-MacBook-Pro:2016 abhisheka$ git branch -av
+  laptop                 2892214 test
+* master                 2892214 test
+  remotes/origin/HEAD    -> origin/master
+  remotes/origin/develop c84fa71 test
+  remotes/origin/master  2892214 test
+srvdsks-MacBook-Pro:2016 abhisheka$ git checkout laptop
+Switched to branch 'laptop'
+srvdsks-MacBook-Pro:2016 abhisheka$ git branch -av
+* laptop                 2892214 test
+  master                 2892214 test
+  remotes/origin/HEAD    -> origin/master
+  remotes/origin/develop c84fa71 test
+  remotes/origin/master  2892214 test
+srvdsks-MacBook-Pro:2016 abhisheka$
+
