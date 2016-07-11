@@ -20,3 +20,15 @@ srvdsks-MacBook-Pro:2016 abhisheka$ git branch -av
   remotes/origin/master  2892214 test
 srvdsks-MacBook-Pro:2016 abhisheka$
 
+
+
+srvdsks-MacBook-Pro:2016 abhisheka$ git push origin laptop:master
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 469 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To git@github.com:abhinoc/2016.git
+   2892214..5ecd6fa  laptop -> master
+srvdsks-MacBook-Pro:2016 abhisheka$ 
+
