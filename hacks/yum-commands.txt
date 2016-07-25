@@ -1,0 +1,168 @@
+[vagrant@turchin-vbox10 ~]$ rpm -qa --queryformat "%{NAME} %{ARCH}\n" sqlite
+sqlite x86_64
+
+
+Find out what dependencies a uninstalled rpm file called mediawiki-1.4rc1-4.i586.rpm:
+# rpm -qpR mediawiki-1.4rc1-4.i586.rpm
+
+It will print list of dependencies on screen (output):
+
+mod_php
+php-session
+php-gettext
+php-zlib
+php-mysql
+ImageMagick-Magick++
+tetex
+cjk-latex
+rpmlib(PayloadFilesHavePrefix)
+
+
+sudo yum -y install yum-utils
+
+
+
+to find dependencies
+[vagrant@turchin-vbox10 ~]$ rpm -q --whatrequires  rpcbind
+nfs-utils-1.2.3-64.el6.x86_64
+[vagrant@turchin-vbox10 ~]$ rpm -q --whatrequires  openssl
+postfix-2.6.6-6.el6_5.x86_64
+
+
+
+
+________
+
+Installing:
+ gcc                                                                x86_64                                                     4.4.7-17.el6                                                              base                                                         10 M
+Installing for dependencies:
+ cpp                                                                x86_64                                                     4.4.7-17.el6                                                              base                                                        3.7 M
+ glibc-devel                                                        x86_64                                                     2.12-1.192.el6                                                            base                                                        988 k
+ glibc-headers                                                      x86_64                                                     2.12-1.192.el6                                                            base                                                        617 k
+ kernel-headers                                                     x86_64                                                     2.6.32-642.3.1.el6                                                        updates                                                     4.4 M
+Updating for dependencies:
+ glibc                                                              x86_64                                                     2.12-1.192.el6                                                            base                                                        3.8 M
+ glibc-common                                                       x86_64                                                     2.12-1.192.el6                                                            base                                                         14 M
+ libgcc                                                             x86_64                                                     4.4.7-17.el6                                                              base                                                        103 k
+ libgomp                                                            x86_64                                                     4.4.7-17.el6                                                              base                                                        134 k
+ tzdata                                                             noarch                                                     2016f-1.el6                                                               updates                                                     452 k
+
+Transaction Summary
+===========================================================================================================================================================================================================================================================================
+Install       5 Package(s)
+Upgrade       5 Package(s)
+----------
+
+
+
+
+
+
+
+
+
+[vagrant@turchin-vbox10 ~]$ rpm -q --whatrequires  gcc-
+no package requires gcc-
+[vagrant@turchin-vbox10 ~]$ rpm -q --whatrequires  cpp
+gcc-4.4.7-17.el6.x86_64
+[vagrant@turchin-vbox10 ~]$ rpm -q --whatrequires  gcc
+no package requires gcc
+[vagrant@turchin-vbox10 ~]$ rpm -qR gcc
+/bin/sh
+/bin/sh
+/bin/sh
+/sbin/install-info
+/sbin/install-info
+binutils >= 2.19.51.0.14-33
+cloog-ppl >= 0.15
+cpp = 4.4.7-17.el6
+glibc-devel >= 2.2.90-12
+libc.so.6()(64bit)
+libc.so.6(GLIBC_2.11)(64bit)
+libc.so.6(GLIBC_2.2.5)(64bit)
+libc.so.6(GLIBC_2.3)(64bit)
+libc.so.6(GLIBC_2.4)(64bit)
+libc.so.6(GLIBC_2.7)(64bit)
+libgcc >= 4.4.7-17.el6
+libgcc_s.so.1()(64bit)
+libgomp = 4.4.7-17.el6
+libgomp.so.1()(64bit)
+rpmlib(CompressedFileNames) <= 3.0.4-1
+rpmlib(FileDigests) <= 4.6.0-1
+rpmlib(PartialHardlinkSets) <= 4.0.4-1
+rpmlib(PayloadFilesHavePrefix) <= 4.0-1
+rpmlib(VersionedDependencies) <= 3.0.3-1
+rtld(GNU_HASH)
+rpmlib(PayloadIsXz) <= 5.2-1
+[vagrant@turchin-vbox10 ~]$
+
+
+
+
+
+
+[vagrant@turchin-vbox10 ~]$ repoquery --requires --resolve gcc
+Failed to set locale, defaulting to C
+gcc-0:4.4.7-17.el6.x86_64
+info-0:4.13a-8.el6.x86_64
+libgomp-0:4.4.7-17.el6.i686
+bash-0:4.1.2-40.el6.x86_64
+cloog-ppl-0:0.15.7-1.2.el6.i686
+libgcc-0:4.4.7-17.el6.x86_64
+binutils-0:2.20.51.0.2-5.44.el6.x86_64
+glibc-devel-0:2.12-1.192.el6.i686
+glibc-0:2.12-1.192.el6.i686
+glibc-0:2.12-1.192.el6.x86_64
+cpp-0:4.4.7-17.el6.x86_64
+libgcc-0:4.4.7-17.el6.i686
+libgomp-0:4.4.7-17.el6.x86_64
+cloog-ppl-0:0.15.7-1.2.el6.x86_64
+glibc-devel-0:2.12-1.192.el6.x86_64
+[vagrant@turchin-vbox10 ~]$
+
+
+#### BEST WAY to FIND Dependencies #######
+
+[vagrant@turchin-vbox10 vagrant]$ yum deplist gcc
+Failed to set locale, defaulting to C
+Loaded plugins: fastestmirror
+Finding dependencies:
+Loading mirror speeds from cached hostfile
+ * base: centos.mirrors.psw.services
+ * extras: mirror.de.leaseweb.net
+ * updates: centos.mirrors.psw.services
+package: gcc.x86_64 4.4.7-17.el6
+  dependency: libgomp = 4.4.7-17.el6
+   provider: libgomp.i686 4.4.7-17.el6
+   provider: libgomp.x86_64 4.4.7-17.el6
+  dependency: /sbin/install-info
+   provider: info.x86_64 4.13a-8.el6
+  dependency: libgomp.so.1()(64bit)
+   provider: libgomp.x86_64 4.4.7-17.el6
+  dependency: cloog-ppl >= 0.15
+   provider: cloog-ppl.i686 0.15.7-1.2.el6
+   provider: cloog-ppl.x86_64 0.15.7-1.2.el6
+  dependency: glibc-devel >= 2.2.90-12
+   provider: glibc-devel.i686 2.12-1.192.el6
+   provider: glibc-devel.x86_64 2.12-1.192.el6
+  dependency: libc.so.6(GLIBC_2.7)(64bit)
+   provider: glibc.x86_64 2.12-1.192.el6
+  dependency: binutils >= 2.19.51.0.14-33
+   provider: binutils.x86_64 2.20.51.0.2-5.44.el6
+  dependency: cpp = 4.4.7-17.el6
+   provider: cpp.x86_64 4.4.7-17.el6
+  dependency: libgcc >= 4.4.7-17.el6
+   provider: libgcc.x86_64 4.4.7-17.el6
+   provider: libgcc.i686 4.4.7-17.el6
+  dependency: rtld(GNU_HASH)
+   provider: glibc.i686 2.12-1.192.el6
+   provider: glibc.x86_64 2.12-1.192.el6
+  dependency: /bin/sh
+   provider: bash.x86_64 4.1.2-40.el6
+  dependency: libgcc_s.so.1()(64bit)
+   provider: libgcc.x86_64 4.4.7-17.el6
+[vagrant@turchin-vbox10 vagrant]$
+
+
+
+
